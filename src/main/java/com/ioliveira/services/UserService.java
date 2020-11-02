@@ -29,4 +29,26 @@ public class UserService {
     public User insert(UserRequestDTO requestDTO) {
         return userRepository.save(UserConverter.toEntity(requestDTO));
     }
+
+    public void deleteById(String id) {
+        findById(id);
+        userRepository.deleteById(id);
+    }
+
+    public void update(String id, UserRequestDTO requestDTO) {
+        final User user = updateUser(findById(id), requestDTO);
+        userRepository.save(user);
+    }
+
+    private User updateUser(User user, UserRequestDTO requestDTO) {
+        if (requestDTO.getName() != null && !"".equals(requestDTO.getName().trim())) {
+            user.setName(requestDTO.getName());
+        }
+
+        if (requestDTO.getEmail() != null && !"".equals(requestDTO.getEmail().trim())) {
+            user.setEmail(requestDTO.getEmail());
+        }
+
+        return user;
+    }
 }
