@@ -1,5 +1,7 @@
 package com.ioliveira.services;
 
+import com.ioliveira.controllers.converters.UserConverter;
+import com.ioliveira.controllers.dtos.requests.UserRequestDTO;
 import com.ioliveira.entities.User;
 import com.ioliveira.exceptions.ObjectNotFoundException;
 import com.ioliveira.repositories.UserRepository;
@@ -22,5 +24,9 @@ public class UserService {
         return userRepository
                 .findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("User ID:" + id + " nof found"));
+    }
+
+    public User insert(UserRequestDTO requestDTO) {
+        return userRepository.save(UserConverter.toEntity(requestDTO));
     }
 }
