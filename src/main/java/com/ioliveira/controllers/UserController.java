@@ -1,6 +1,7 @@
 package com.ioliveira.controllers;
 
 import com.ioliveira.controllers.dtos.requests.UserRequestDTO;
+import com.ioliveira.entities.Post;
 import com.ioliveira.entities.User;
 import com.ioliveira.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,11 @@ public class UserController {
     public ResponseEntity<Void> update(@PathVariable String id, @RequestBody UserRequestDTO requestDTO) {
         userService.update(id, requestDTO);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(path = "/{id}/posts")
+    public ResponseEntity<List<Post>> findAllPosts(@PathVariable String id) {
+        return ResponseEntity.ok(userService.findById(id).getPosts());
     }
 
 }
