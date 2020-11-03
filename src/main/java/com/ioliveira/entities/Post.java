@@ -1,6 +1,7 @@
 package com.ioliveira.entities;
 
 import com.ioliveira.controllers.dtos.responses.AuthorResponseDTO;
+import com.ioliveira.controllers.dtos.responses.CommentResponseDTO;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -19,6 +22,7 @@ public class Post {
     private String title;
     private String body;
     private AuthorResponseDTO author;
+    private List<CommentResponseDTO> commentDTO = new ArrayList<>();
 
     @Builder(toBuilder = true)
 
