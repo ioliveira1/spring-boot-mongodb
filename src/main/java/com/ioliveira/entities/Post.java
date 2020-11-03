@@ -1,5 +1,6 @@
 package com.ioliveira.entities;
 
+import com.ioliveira.controllers.dtos.responses.AuthorResponseDTO;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,11 +18,11 @@ public class Post {
     private LocalDate date;
     private String title;
     private String body;
-    private User author;
+    private AuthorResponseDTO author;
 
     @Builder(toBuilder = true)
 
-    public Post(LocalDate date, String title, String body, User author) {
+    public Post(LocalDate date, String title, String body, AuthorResponseDTO author) {
         this.date = date;
         this.title = title;
         this.body = body;
