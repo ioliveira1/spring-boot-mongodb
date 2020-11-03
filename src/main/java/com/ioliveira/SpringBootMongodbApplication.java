@@ -41,5 +41,8 @@ public class SpringBootMongodbApplication implements CommandLineRunner {
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
         postRepository.saveAll(Arrays.asList(p1, p2));
 
+        u3.getPosts().addAll(Arrays.asList(p1, p2));
+        userRepository.save(u3);
+
     }
 }

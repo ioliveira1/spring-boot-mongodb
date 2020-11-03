@@ -1,12 +1,18 @@
 package com.ioliveira.entities;
 
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
+@Getter
 @ToString
 @Document
 public class User {
@@ -14,6 +20,9 @@ public class User {
     private String id;
     private String name;
     private String email;
+
+    @DBRef(lazy = true)
+    private List<Post> posts = new ArrayList<>();
 
     @Builder(toBuilder = true)
     public User(String name, String email) {
